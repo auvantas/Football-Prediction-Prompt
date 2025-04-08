@@ -1,7 +1,6 @@
+**### Prompt V16 ###**
 
-### Prompt V15 ###
-
-1.  **Initial Prediction:** For the given football match, make a preliminary score prediction based on intuition, odds, or basic context. Save this prediction mentally or on a conceptual "scratchpad."
+1.  **Initial Prediction:** For the next given football match using the system date, make a preliminary score prediction based on intuition, odds, or basic context. Save this prediction mentally or on a conceptual "scratchpad."
 2.  **Analysis Target:** Focus analysis on the specific match provided.
 3.  **Iterative Analysis Loop & Conceptual Data Handling:**
     Follow the "Data Check" steps (Step 4) below for the targeted match.
@@ -10,82 +9,107 @@
     *   **Iteration:** If newly found data significantly changes the picture, iterate through relevant parts of Step 4 again, refining the analysis based on the updated information on the scratchpad.
     *   **Prompt Chaining Context:** The complete analysis presented in the response (incorporating initially found and dynamically searched data) becomes part of the conversation history. This history serves as the context for subsequent prompts (prompt chaining), allowing follow-up questions or refinements to build upon the established analysis. The "storage" mechanism is this contextual carry-forward within the conversation session.
     *   **Missing Data:** Use stored data and results that are incomplete to continue the search to complete required 'Dynamic Gap Filling'. Do not continue on to the next step or stage of the analysis until all data required for analysis is complete.
+    *   **Continuation of Steps:** Retrieve previous output and stored scratch pad data to find where the last step was complete or incomplete, continuing from that position.
 4.  **Data Check:** Perform the following analysis points, using grounded search where necessary:
-    4.1 **League Context:** Retrieve current league positions for both teams (overall, home, and away tables if available in the correct league). Use search if needed. Store findings on the conceptual scratchpad.
-    4.1.1 **Odds Search:** Retrieve match betting odds for, Over/Under 2.5 Goals, Correct Score, Double Chance, Both Teams To Score, Handicap Markets. Store findings on the conceptual scratchpad for further analysis.
-    4.2 **Recent Form Analysis (Last 5 Official Matches):**
-        *   Use search to collect W-D-L results for the last 5 official games (prioritizing league, then cup). List matches, opponents, and competition. This list of specific matches (including teams, competition, date, and FT score) forms the basis for targeted data retrieval in step 4.3 and should be stored on the conceptual scratchpad.
-        *   Analyse wins/draws/losses against teams of similar, higher, and lower standing (if known) to gauge strength relative to the current opponent.
-        *   Analyse home-specific and away-specific form within these recent games.
-        *   Evaluate goals scored and conceded trends (totals and per game average) in these recent matches.
-        *   Calculate clean sheet percentages and failed-to-score percentages from these last 5 games.
-        *   **Calculate the percentage of these last 5 games that finished Over 2.5 total goals and Under 2.5 total goals for each team.** Store findings on the conceptual scratchpad.
-    4.3 **Reliability/Comeback/Choke/Timing Analysis (Based on Last 5 Official Matches Identified in 4.2):**
+
+    **4.1 League Context:**
+        *   **Objective:** Retrieve accurate, current league standings (Overall, Home, Away) for both teams in the specified league.
+        *   **Mandatory Search & Query Formulation:** Use the `google_search` tool with specific, targeted queries to find the official or most reputable league table data *as close to the current date as possible*. Prioritize queries such as:
+            *   `"[League Name]" current table [Current Year]`
+            *   `"[Team Name]" league position "[League Name]" [Current Year]`
+            *   `"[League Name]" home table [Current Year]`
+            *   `"[League Name]" away table [Current Year]`
+        *   **Data Points to Extract:** For each team, actively search for and extract the following data points for the **Overall**, **Home**, and **Away** tables:
+            *   Rank / Position, GP, Pts, W, D, L, GF, GA, GD
+        *   **Source Prioritization:** Prioritize results from official league websites, major reputable sports news outlets (e.g., BBC Sport, Sky Sports, ESPN), or well-established football statistics sites (e.g., FotMob, Soccerway, FlashScore, WhoScored).
+        *   **Dynamic Gap Filling for Tables:** If initial searches don't provide Home/Away splits, perform *additional, specific searches* using queries like `"[League Name]" home table` and `"[League Name]" away table`.
+        *   **Conceptual Scratchpad Storage:** **Crucially, store all retrieved league data points...** Note the source or date if possible...
+
+    4.1.1 **Odds Search:** Retrieve match betting odds for, Over/Under 2.5 Goals, Correct Score, Double Chance, Both Teams To Score, Handicap Markets. Store findings on the conceptual scratchpad...
+
+    4.2 **Recent Form Analysis (Last 10 Official Matches):**
+        *   Use search to collect W-D-L results for the last 10 official games... List matches, opponents, competition, date, and FT score... store on the conceptual scratchpad.
+        *   Analyse wins/draws/losses against teams of similar, higher, and lower standing...
+        *   Analyse home-specific and away-specific form...
+        *   Evaluate goals scored and conceded trends...
+        *   Calculate clean sheet percentages and failed-to-score percentages...
+        *   **Calculate the percentage of these last 10 games that finished Over 2.5 total goals and Under 2.5 total goals for each team.** Store findings...
+
+    **4.3 Reliability/Comeback/Choke/Timing Analysis (Based on Last 10 Official Matches Identified in 4.2):**
         *   **Data Retrieval (HT/FT Scores - Prioritize this):**
-            *   Goal: Find the Half-Time (HT) score and Full-Time (FT) score for the 5 most recent official matches for both teams involved (identified in step 4.2).
-            *   Prioritization: Current league matches > recent domestic cup matches > final matches from the previous league season (if needed to reach 5 games).
+            *   Goal: Find the Half-Time (HT) score and Full-Time (FT) score for the 10 most recent official matches...
+            *   Prioritization: Current league matches > recent domestic cup matches...
             *   **Methodology for Finding Missing HT/FT Data:**
-                *   **Initial Broad Scan & Gap Identification:** Start with broader searches (e.g., "Team X last 5 matches results", "Team X league form"). Collate retrieved info (FT scores, opponents, dates, competitions) onto the conceptual 'scratchpad'. Compare against requirements (need HT/FT for last 5 games specified in step 4.2) and explicitly flag specific matches on the scratchpad where the HT score is missing.
-                *   **Leveraging Stored Data for Query Formulation:** Use the precise details already stored on the conceptual scratchpad for each match lacking an HT score (i.e., **Team A**, **Team B**, **Competition**, **Date**, **known FT score**) to formulate targeted dynamic search queries.
-                *   **Formulating Targeted Dynamic Searches:** Generate precise queries specifically designed to find detailed match reports, statistics pages, or live text commentaries for *each* flagged match. Prioritize query patterns like:
+                *   **Initial Broad Scan & Gap Identification:** Start with broader searches... Collate retrieved info... flag specific matches on the scratchpad where the HT score is missing.
+                *   **Leveraging Stored Data for Query Formulation:** Use the precise details already stored... (Team A, Team B, Competition, Date, known FT score)...
+                *   **Formulating Targeted Dynamic Searches:** Generate precise queries specifically designed to find detailed match statistics or reports for *each* flagged match. **Prioritize queries that include "Sofascore" or are likely to yield results from Sofascore.com**, alongside standard queries like:
+                    *   `Sofascore [Team A] vs [Team B] [Competition] [Date] HT FT`
+                    *   `[Team A] vs [Team B] stats [Competition] [Date] Sofascore`
                     *   `Match report [Team A] vs [Team B] [Competition] [Date]`
-                    *   `[Team A] vs [Team B] stats [Competition] [Date] HT FT`
                     *   `What was the half time score [Team A] vs [Team B] [Date]`
-                    *   `[Team A] [Team B] [Date] football score summary half time`
-                    *   (Secondary): `Live text commentary [Team A] vs [Team B] [Date]`
-                *   **Tool Execution:** Execute these specific, dynamically generated queries using the `google_search` tool, potentially running iterative searches for a single match if the initial targeted query is unsuccessful.
-                *   **Information Extraction and Verification:** Carefully analyze the search result snippets. Prioritize results from reliable sources (official league/club sites, major sports news outlets like BBC Sport/Sky Sports/ESPN, established stats sites like FotMob/Soccerway/WhoScored/Flashscore). Extract the HT score, ensuring it corresponds *exactly* to the correct match (Teams, Date) and the *known FT score* already on the scratchpad. If possible, cross-reference the HT score using multiple reliable sources found via search to increase confidence. Note any persistent discrepancies.
-                *   **Updating the Conceptual Scratchpad:** Add the verified HT scores to the conceptual 'scratchpad', filling the identified data gaps for each match. Mark if any HT score remains definitively unobtainable after targeted attempts. This completed dataset forms the basis for the calculations below.
+                *   **Tool Execution:** Execute these specific, dynamically generated queries using the `google_search` tool...
+                *   **Information Extraction and Verification:** Carefully analyze the search result snippets and linked pages. **Prioritize extracting data directly from Sofascore match pages if they are found and accessible via the search results**, as they typically present clear HT scores. Verify the extracted score corresponds *exactly* to the correct match (Teams, Date, FT score). If Sofascore results are unavailable or inaccessible, use other reliable sources (official sites, major news outlets, other reputable stats sites like FotMob, FlashScore) and cross-reference if possible. Note any persistent discrepancies or the source used.
+                *   **Updating the Conceptual Scratchpad:** Add the verified HT scores to the conceptual 'scratchpad', filling the identified data gaps for each match. Mark if any HT score remains definitively unobtainable after targeted attempts.
         *   **Calculation (Based on completed HT/FT data retrieved):**
-            *   Calculate Reliability: % of games won when leading at HT (Number of Wins when Leading HT / Number of Times Led at HT) on a separate line.
-            *   Calculate Comeback: % of games won when trailing at HT (Number of Wins when Trailing HT / Number of Times Trailed at HT) on a separate line.
-            *   Calculate Choke: % of games lost when leading at HT (Number of Losses when Leading HT / Number of Times Led at HT) on a separate line.
-            *   Note: If insufficient data exists for a specific situation after targeted searches (e.g., fewer than 2-3 instances of "Times Led at HT" or "Times Trailed at HT"), clearly state that the corresponding stat could not be reliably calculated due to lack of occurrences or persistently missing HT score data. Store findings on the conceptual scratchpad.
+            *   Calculate Reliability: % of games won when leading at HT...
+            *   Calculate Comeback: % of games won when trailing at HT...
+            *   Calculate Choke: % of games lost when leading at HT...
+            *   Note: If insufficient data exists... state clearly that the corresponding stat could not be reliably calculated... Store findings...
         *   **Goal Timing Analysis (ES / ST - Attempt if possible, acknowledge difficulty):**
-            *   Data Requirement: Specific minute each goal was scored in the 5 most recent official matches (identified in step 4.2).
-            *   Feasibility: Acknowledge difficulty in finding comprehensive, accurate goal times via standard search, as they are usually embedded within detailed reports.
-            *   Targeted Data Retrieval & Dynamic Search: Actively attempt to find goal times using the same targeted dynamic search methodology described above for HT/FT scores (leveraging stored match details from the scratchpad to query for `Match statistics`, `Match report`, or `Minute by minute` details for *each specific game*). Look for goal scorer details including timestamps within these reports/stats pages found via search.
-            *   Store any found goal times on the scratchpad.
+            *   Data Requirement: Specific minute each goal was scored...
+            *   Feasibility: Acknowledge difficulty in finding comprehensive, accurate goal times...
+            *   **Targeted Data Retrieval & Dynamic Search:** Actively attempt to find goal times.
+                *   **Primary Source Target (Sofascore):** Utilize the targeted dynamic search methodology (leveraging stored match details) to **specifically locate the Sofascore match page** (or similar detail-rich stats pages like FotMob, FlashScore if Sofascore is unavailable) for *each specific game*. Use queries like:
+                    *   `Sofascore [Team A] vs [Team B] [Competition] [Date] goal times`
+                    *   `[Team A] vs [Team B] minute by minute [Date] Sofascore`
+                *   **Extraction from Source:** Once the relevant Sofascore (or similar reliable stats site's page) is identified via search, parse its timeline, event log, or goalscorer list to extract the specific minute listed for each goal scored.
+                *   Store any found goal times on the scratchpad, **noting the source used (e.g., "Sofascore")**.
             *   Calculation (Perform only if sufficient goal time data is retrieved across several matches):
-                *   Calculate Early Score (ES): % of the retrieved goals scored within the first 15 minutes of either half (Minutes 1-15 and 46-60). State the total number of goals found and used for this calculation on a separate line.
-                *   Calculate Score Time (ST): Provide the distribution (%) of retrieved goals falling into approximate time brackets: 1-15, 16-30, 31-45+, 46-60, 61-75, 76-90+. State the total number of goals found and used for this calculation on a separate line. (*Note: Adjusted time brackets slightly for clarity*).
-            *   Crucial Note: If insufficient or inconsistent goal time data is found after the targeted search attempt (e.g., times found for only a small fraction of the total goals scored across the 10 games, or if comprehensive reports/stats pages could not be reliably parsed from search results), state clearly that ES and ST percentages could not be reliably calculated due to lack of precise goal timestamp data. Avoid presenting percentages based on minimal data. Store findings (or lack thereof) on the conceptual scratchpad.
-    4.4 **Team News and Injuries:**
-        *   Search for confirmed significant injuries and suspensions affecting key players for the upcoming match.
-        *   Assess the potential impact of these absences on team strength and tactics, **specifically noting absences of key attackers (might favor Under) or defenders (might favor Over).** Store findings on the conceptual scratchpad.
-    4.5 **Situational and Tactical Context Analysis:**
-        *   Evaluate match importance for each team (e.g., league points needed, cup progression, rivalry). **Consider if high stakes might lead to caution (Under) or desperation (Over).**
-        *   Infer likely tactical approaches based on context, form, and manager tendencies **(e.g., defensive focus vs attacking intent).**
-        *   Assess fixture congestion and potential for squad rotation.
-        *   Note any recent managerial changes and their potential short-term impact. Synthesize these factors based on stored findings.
-    4.6 **Head-to-Head (H2H) Analysis:**
-        *   Search for and briefly review results of recent H2H matches (last 2-4 meetings if available). Note goal trends or consistent outcomes. **Explicitly calculate the percentage of these recent H2H matches that finished Over 2.5 total goals and Under 2.5 total goals.** Consider relevance. Store findings on the conceptual scratchpad.
-    4.7 **Betting Odds Comparison:**
+                *   Calculate Early Score (ES): % of the retrieved goals scored within the first 15 minutes of either half (Minutes 1-15 and 46-60)... State the total number of goals found and used...
+                *   Calculate Score Time (ST): Provide the distribution (%) of retrieved goals falling into approximate time brackets: 1-15, 16-30, 31-45+, 46-60, 61-75, 76-90+... State the total number of goals found and used...
+            *   **Crucial Note:** If, **after specifically attempting to retrieve data from Sofascore (or similar reliable stats sites identified via targeted search)**, insufficient or inconsistent goal time data is found (e.g., times found for only a small fraction of the total goals scored across the 10 games, or if comprehensive reports/stats pages could not be reliably parsed from search results), state clearly that ES and ST percentages could not be reliably calculated due to lack of precise goal timestamp data. Avoid presenting percentages based on minimal data. Store findings (or lack thereof)...
+
+    **4.4 Team News and Injuries:**
+        *   Search for confirmed significant injuries and suspensions...
+        *   Assess the potential impact... Store findings...
+
+    **4.5 Situational and Tactical Context Analysis:**
+        *   Evaluate match importance... Consider if high stakes might lead to caution (Under) or desperation (Over).
+        *   Infer likely tactical approaches...
+        *   Assess fixture congestion...
+        *   Note any recent managerial changes... Synthesize these factors...
+
+    **4.6 Head-to-Head (H2H) Analysis:**
+        *   Search for and briefly review results of recent H2H matches... Explicitly calculate the percentage of these recent H2H matches that finished Over 2.5 total goals and Under 2.5 total goals... Store findings...
+
+    **4.7 Betting Odds Comparison:**
         *   Note the provided betting odds.
-        *   Compare your analytical assessment (based on stored findings from previous steps) with the odds. If conflict exists, re-evaluate but prioritize data-driven findings and context.
-    4.8 **Weather Forecast Integration:**
-        *   Search for the weather forecast for the match location and time. Note significant conditions and potential impact. Store findings.
-    4.9 **Home/Away Strength Synthesis:**
-        *   Integrate the specific home/away form (from step 4.2), H2H dynamics (step 4.6), and league context (step 4.1) stored on the scratchpad into the final assessment.
+        *   Compare your analytical assessment... If conflict exists, re-evaluate...
+
+    **4.8 Weather Forecast Integration:**
+        *   Search for the weather forecast... Note significant conditions... Store findings.
+
+    **4.9 Home/Away Strength Synthesis:**
+        *   Integrate the specific home/away form..., H2H dynamics..., and league context... stored on the scratchpad into the final assessment.
 
 5.  **Final Prediction:** Based on the comprehensive analysis drawing from all stored findings on the conceptual scratchpad:
     *   **Synthesize Key Findings & Identify Plausible Scenarios:**
-        *   Briefly summarize the strongest factors derived from the scratchpad analysis.
-        *   Based on this synthesis, identify the **most plausible scenario(s)** for the match result (Home Win, Draw, Away Win). Evaluate the relative likelihood and confidence in each scenario based on the weight of evidence (e.g., "Draw highly likely due to X, Y; Narrow Away Win plausible due to Z; Home Win unlikely due to A, B").
+        *   Briefly summarize the strongest factors...
+        *   Based on this synthesis, identify the **most plausible scenario(s)**... Evaluate the relative likelihood...
     *   **Determine Primary Prediction Format:**
-        *   If one scenario (e.g., Draw) is clearly dominant and significantly more likely than others based on the analysis, identify this as the **Primary Specific Outcome Prediction**.
-        *   If two scenarios involving one team avoiding defeat (e.g., Draw *and* Away Win) are identified as the *most plausible* outcomes and are *significantly more likely* than the third outcome (Home Win), identify the corresponding **Primary Double Chance Prediction** (e.g., Away Win or Draw) as the most logical representation of the analysis.
-        *   If the analysis suggests a highly unpredictable match with no clear lean (rare), state this uncertainty.
-    *   **State Primary Match Outcome Prediction:** Clearly state the primary prediction determined above (e.g., "Primary Prediction: Draw", or "Primary Prediction: Away Win or Draw").
-    *   **(Optional) Acknowledge Secondary Scenarios:** If a Double Chance wasn't the primary prediction, but other scenarios were deemed plausible (though less likely), briefly mention them for context (e.g., "While Draw is most likely, a narrow Away Win (0-1) is also plausible."). If a Double Chance *was* the primary prediction, this step can be skipped as the component scenarios are implicitly covered.
+        *   If one scenario... is clearly dominant... identify this as the **Primary Specific Outcome Prediction**.
+        *   If two scenarios involving one team avoiding defeat... identify the corresponding **Primary Double Chance Prediction**...
+        *   If the analysis suggests a highly unpredictable match... state this uncertainty.
+    *   **State Primary Match Outcome Prediction:** Clearly state the primary prediction...
+    *   **(Optional) Acknowledge Secondary Scenarios:** If a Double Chance wasn't the primary prediction... briefly mention them...
     *   **Predict Total Goals (Over/Under 2.5):**
-        *   Synthesize O/U Factors: Based on stored findings (recent form O/U%, H2H O/U%, team news impact, expected tactics, situational factors), weigh the evidence favouring Over 2.5 goals against the evidence favouring Under 2.5 goals, considering the *primary prediction* scenario(s).
-        *   State O/U Prediction: Clearly state the prediction as either "Over 2.5 goals" or "Under 2.5 goals".
+        *   Synthesize O/U Factors... weigh the evidence...
+        *   State O/U Prediction...
         *   (Optional): Briefly state the confidence level.
     *   **Formulate Most Robust Combined Prediction:**
-        *   **Combine the Primary Match Outcome Prediction and the Total Goals Prediction into a single, logical, and robust statement.** This represents the core takeaway from the analysis. (e.g., *"The most robust combined prediction derived from the analysis is: Away Win or Draw AND Under 2.5 goals"*, or *"The most robust combined prediction derived from the analysis is: Draw AND Under 2.5 goals"*).
-    *   **Scoreline(s) (Contextual):** Provide **illustrative scoreline(s)** that align with the **Most Robust Combined Prediction**. (e.g., If predicting "Away Win or Draw AND Under 2.5", scores like 0-1, 1-1, 0-0 fit).
-    *   **Justification:** Justify *both* the Primary Match Outcome Prediction (explaining *why* a specific outcome *or* a Double Chance was chosen as the most logical representation) and the Over/Under 2.5 goals prediction by referencing the key synthesized factors supporting the analysis. Explain how these factors lead to the **Most Robust Combined Prediction**. Address the specific match provided.
+        *   **Combine the Primary Match Outcome Prediction and the Total Goals Prediction into a single, logical, and robust statement.**...
+    *   **Scoreline(s) (Contextual):** Provide **illustrative scoreline(s)** that align with the **Most Robust Combined Prediction**.
+    *   **Justification:** Justify *both* the Primary Match Outcome Prediction... and the Over/Under 2.5 goals prediction... Explain how these factors lead to the **Most Robust Combined Prediction**. Address the specific match provided.
 
 
 *(Example match and odds added as per request)*
