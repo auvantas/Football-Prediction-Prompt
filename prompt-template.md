@@ -1,4 +1,3 @@
----
 
 ### Prompt V15 ###
 
@@ -88,7 +87,6 @@
     *   **Scoreline(s) (Contextual):** Provide **illustrative scoreline(s)** that align with the **Most Robust Combined Prediction**. (e.g., If predicting "Away Win or Draw AND Under 2.5", scores like 0-1, 1-1, 0-0 fit).
     *   **Justification:** Justify *both* the Primary Match Outcome Prediction (explaining *why* a specific outcome *or* a Double Chance was chosen as the most logical representation) and the Over/Under 2.5 goals prediction by referencing the key synthesized factors supporting the analysis. Explain how these factors lead to the **Most Robust Combined Prediction**. Address the specific match provided.
 
----
 
 *(Example match and odds added as per request)*
 
