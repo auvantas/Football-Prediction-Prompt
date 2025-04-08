@@ -1,4 +1,10 @@
-### V14 Prompt ###
+Okay, I have updated prompt V14 to incorporate the detailed methodology for finding missing Half-Time (HT) scores using targeted dynamic searches based on information stored on the conceptual scratchpad.
+
+Here is the updated prompt (V15):
+
+---
+
+### Prompt V15 ###
 
 1.  **Initial Prediction:** For the given football match, make a preliminary score prediction based on intuition, odds, or basic context. Save this prediction mentally or on a conceptual "scratchpad."
 2.  **Analysis Target:** Focus analysis on the specific match provided.
@@ -11,9 +17,9 @@
     *   **Missing Data:** Use stored data and results that are incomplete to continue the search to complete required 'Dynamic Gap Filling'. Do not continue on to the next step or stage of the analysis until all data required for analysis is complete.
 4.  **Data Check:** Perform the following analysis points, using grounded search where necessary:
     4.1 **League Context:** Retrieve current league positions for both teams (overall, home, and away tables if available in the correct league). Use search if needed. Store findings on the conceptual scratchpad.
-	4.1.1 **Odds Search:** Retrieve match betting odds for, Over/Under 2.5 Goals, Correct Score, Double Chance, Both Teams To Score, Handicap Markets. Store findings on the conceptual scratchpad for further analsyis.
+    4.1.1 **Odds Search:** Retrieve match betting odds for, Over/Under 2.5 Goals, Correct Score, Double Chance, Both Teams To Score, Handicap Markets. Store findings on the conceptual scratchpad for further analysis.
     4.2 **Recent Form Analysis (Last 5 Official Matches):**
-        *   Use search to collect W-D-L results for the last 5 official games (prioritizing league, then cup). List matches, opponents, and competition. This list of specific matches forms the basis for targeted data retrieval in step 4.3.
+        *   Use search to collect W-D-L results for the last 5 official games (prioritizing league, then cup). List matches, opponents, and competition. This list of specific matches (including teams, competition, date, and FT score) forms the basis for targeted data retrieval in step 4.3 and should be stored on the conceptual scratchpad.
         *   Analyse wins/draws/losses against teams of similar, higher, and lower standing (if known) to gauge strength relative to the current opponent.
         *   Analyse home-specific and away-specific form within these recent games.
         *   Evaluate goals scored and conceded trends (totals and per game average) in these recent matches.
@@ -23,34 +29,32 @@
         *   **Data Retrieval (HT/FT Scores - Prioritize this):**
             *   Goal: Find the Half-Time (HT) score and Full-Time (FT) score for the 5 most recent official matches for both teams involved (identified in step 4.2).
             *   Prioritization: Current league matches > recent domestic cup matches > final matches from the previous league season (if needed to reach 5 games).
-            *   Methodology for Finding Missing HT/FT Data:
-                *   Initial Broad Scan & Gap Identification: Start with broader searches (e.g., "Team X last 5 matches results", "Team X league form"). Collate retrieved info onto the conceptual 'scratchpad'. Compare against requirements (need HT/FT for last 5 games) and flag gaps (e.g., missing HT scores for specific matches from step 4.2).
-                *   Formulating Targeted Dynamic Searches: If HT/FT scores are missing for specific matches after the initial scan, generate precise queries dynamically based on the known match details (Teams, Competition, Date from step 4.2). Prioritize query patterns designed to find comprehensive match statistics pages or detailed match reports, as these are most likely to contain HT/FT data. Examples:
-                    *   Match statistics \[Team A] vs \[Team B] \[Date]
-                    *   Match report \[Team A] vs \[Team B] \[Competition] \[Date]
-                    *   \[Team A] \[Team B] \[League] \[Date] score summary stats
-                    *   (Secondary patterns): \[Team A] vs \[Team B] \[Competition] \[Date] half time full time score, \[Team A] \[Team B] \[Date] HT FT result
-                *   Tool Execution: Execute these specific, dynamically generated queries using the google\_search tool.
-                *   Information Extraction and Verification: Analyse the search result snippets from pages identified (ideally stats/report pages). Prioritize reliable sources (official league websites, major sports news outlets like FIFA/ESPN/BBC/L'Équipe, established stats sites like Sofascore/Soccerway/WhoScored/FotMob/Flashscore/Footystats/Btfstats/football-data/totalcorner/soccerstats, reputable betting sites). Extract the specific HT score linked to the correct FT score for the identified match. Cross-reference using multiple sources if possible to increase confidence.
-                *   Updating the Conceptual Scratchpad: Add reliably found HT/FT scores to the internal 'scratchpad', completing the dataset needed for analysis. Indicate if any data remains definitively missing after targeted attempts.
-        *   **Calculation (Based on most complete data retrieved):**
+            *   **Methodology for Finding Missing HT/FT Data:**
+                *   **Initial Broad Scan & Gap Identification:** Start with broader searches (e.g., "Team X last 5 matches results", "Team X league form"). Collate retrieved info (FT scores, opponents, dates, competitions) onto the conceptual 'scratchpad'. Compare against requirements (need HT/FT for last 5 games specified in step 4.2) and explicitly flag specific matches on the scratchpad where the HT score is missing.
+                *   **Leveraging Stored Data for Query Formulation:** Use the precise details already stored on the conceptual scratchpad for each match lacking an HT score (i.e., **Team A**, **Team B**, **Competition**, **Date**, **known FT score**) to formulate targeted dynamic search queries.
+                *   **Formulating Targeted Dynamic Searches:** Generate precise queries specifically designed to find detailed match reports, statistics pages, or live text commentaries for *each* flagged match. Prioritize query patterns like:
+                    *   `Match report [Team A] vs [Team B] [Competition] [Date]`
+                    *   `[Team A] vs [Team B] stats [Competition] [Date] HT FT`
+                    *   `What was the half time score [Team A] vs [Team B] [Date]`
+                    *   `[Team A] [Team B] [Date] football score summary half time`
+                    *   (Secondary): `Live text commentary [Team A] vs [Team B] [Date]`
+                *   **Tool Execution:** Execute these specific, dynamically generated queries using the `google_search` tool, potentially running iterative searches for a single match if the initial targeted query is unsuccessful.
+                *   **Information Extraction and Verification:** Carefully analyze the search result snippets. Prioritize results from reliable sources (official league/club sites, major sports news outlets like BBC Sport/Sky Sports/ESPN, established stats sites like FotMob/Soccerway/WhoScored/Flashscore). Extract the HT score, ensuring it corresponds *exactly* to the correct match (Teams, Date) and the *known FT score* already on the scratchpad. If possible, cross-reference the HT score using multiple reliable sources found via search to increase confidence. Note any persistent discrepancies.
+                *   **Updating the Conceptual Scratchpad:** Add the verified HT scores to the conceptual 'scratchpad', filling the identified data gaps for each match. Mark if any HT score remains definitively unobtainable after targeted attempts. This completed dataset forms the basis for the calculations below.
+        *   **Calculation (Based on completed HT/FT data retrieved):**
             *   Calculate Reliability: % of games won when leading at HT (Number of Wins when Leading HT / Number of Times Led at HT) on a separate line.
             *   Calculate Comeback: % of games won when trailing at HT (Number of Wins when Trailing HT / Number of Times Trailed at HT) on a separate line.
             *   Calculate Choke: % of games lost when leading at HT (Number of Losses when Leading HT / Number of Times Led at HT) on a separate line.
-            *   Note: If insufficient data exists for a specific situation after targeted searches (e.g., fewer than 2-3 instances of "Times Led at HT"), clearly state that the corresponding stat could not be reliably calculated due to lack of occurrences or persistently missing HT score data. Store findings on the conceptual scratchpad.
+            *   Note: If insufficient data exists for a specific situation after targeted searches (e.g., fewer than 2-3 instances of "Times Led at HT" or "Times Trailed at HT"), clearly state that the corresponding stat could not be reliably calculated due to lack of occurrences or persistently missing HT score data. Store findings on the conceptual scratchpad.
         *   **Goal Timing Analysis (ES / ST - Attempt if possible, acknowledge difficulty):**
             *   Data Requirement: Specific minute each goal was scored in the 5 most recent official matches (identified in step 4.2).
             *   Feasibility: Acknowledge difficulty in finding comprehensive, accurate goal times via standard search, as they are usually embedded within detailed reports.
-            *   Targeted Data Retrieval & Dynamic Search: Actively attempt to find goal times using the same targeted dynamic search methodology described above for HT/FT scores, focusing on finding comprehensive match statistics or match report pages for the specific matches identified in step 4.2. Look for goal scorer details including timestamps within these reports/stats pages. Use specific queries like:
-                *   Match statistics \[Team A] vs \[Team B] \[Date]
-                *   Match report \[Team A] vs \[Team B] \[Competition] \[Date]
-                *   Minute by minute \[Team A] vs \[Team B] \[Date]
-                *   \[Team Name] vs \[Opponent Name] \[Competition] \[Date] goal times details
+            *   Targeted Data Retrieval & Dynamic Search: Actively attempt to find goal times using the same targeted dynamic search methodology described above for HT/FT scores (leveraging stored match details from the scratchpad to query for `Match statistics`, `Match report`, or `Minute by minute` details for *each specific game*). Look for goal scorer details including timestamps within these reports/stats pages found via search.
             *   Store any found goal times on the scratchpad.
             *   Calculation (Perform only if sufficient goal time data is retrieved across several matches):
                 *   Calculate Early Score (ES): % of the retrieved goals scored within the first 15 minutes of either half (Minutes 1-15 and 46-60). State the total number of goals found and used for this calculation on a separate line.
-                *   Calculate Score Time (ST): Provide the distribution (%) of retrieved goals falling into approximate time brackets: 1-15, 16-30, 31-45+, 46-65, 66-80, 81-90+. State the total number of goals found and used for this calculation on a separate line.
-            *   Crucial Note: If insufficient or inconsistent goal time data is found after the targeted search attempt (e.g., times found for only a small fraction of the total goals scored across the 5 games, or if comprehensive match reports/stats pages could not be found/parsed), state clearly that ES and ST percentages could not be reliably calculated due to lack of precise goal timestamp data from the search results. Avoid presenting percentages based on minimal data. Store findings (or lack thereof) on the conceptual scratchpad.
+                *   Calculate Score Time (ST): Provide the distribution (%) of retrieved goals falling into approximate time brackets: 1-15, 16-30, 31-45+, 46-60, 61-75, 76-90+. State the total number of goals found and used for this calculation on a separate line. (*Note: Adjusted time brackets slightly for clarity*).
+            *   Crucial Note: If insufficient or inconsistent goal time data is found after the targeted search attempt (e.g., times found for only a small fraction of the total goals scored across the 10 games, or if comprehensive reports/stats pages could not be reliably parsed from search results), state clearly that ES and ST percentages could not be reliably calculated due to lack of precise goal timestamp data. Avoid presenting percentages based on minimal data. Store findings (or lack thereof) on the conceptual scratchpad.
     4.4 **Team News and Injuries:**
         *   Search for confirmed significant injuries and suspensions affecting key players for the upcoming match.
         *   Assess the potential impact of these absences on team strength and tactics, **specifically noting absences of key attackers (might favor Under) or defenders (might favor Over).** Store findings on the conceptual scratchpad.
@@ -88,16 +92,17 @@
     *   **Scoreline(s) (Contextual):** Provide **illustrative scoreline(s)** that align with the **Most Robust Combined Prediction**. (e.g., If predicting "Away Win or Draw AND Under 2.5", scores like 0-1, 1-1, 0-0 fit).
     *   **Justification:** Justify *both* the Primary Match Outcome Prediction (explaining *why* a specific outcome *or* a Double Chance was chosen as the most logical representation) and the Over/Under 2.5 goals prediction by referencing the key synthesized factors supporting the analysis. Explain how these factors lead to the **Most Robust Combined Prediction**. Address the specific match provided.
 
+---
 
-(add in the two teams and odds including draw example below)
+*(Example match and odds added as per request)*
 
-Tottenham v Southampton
+**Tottenham v Southampton**
 
-Tottenham
-1.36
+**Tottenham**
+**1.36**
 
-Draw
-5.00
+**Draw**
+**5.00**
 
-Southampton
-7.00
+**Southampton**
+**7.00**
