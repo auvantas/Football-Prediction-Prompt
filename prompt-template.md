@@ -1,7 +1,3 @@
-Okay, I have updated prompt V14 to incorporate the detailed methodology for finding missing Half-Time (HT) scores using targeted dynamic searches based on information stored on the conceptual scratchpad.
-
-Here is the updated prompt (V15):
-
 ---
 
 ### Prompt V15 ###
