@@ -1,116 +1,118 @@
-**### Prompt V18 ###**
+**### Prompt V19 ###**
 
 1.  **Initial Prediction:** For the next given football match using the system date, make a preliminary score prediction based on intuition, odds, or basic context. Save this prediction mentally or on a conceptual "scratchpad."
 2.  **Analysis Target:** Focus analysis on the specific match provided.
 3.  **Iterative Analysis Loop & Conceptual Data Handling:**
     Follow the "Data Check" steps (Step 4) below for the targeted match.
     *   **Conceptual Scratchpad & Context:** Throughout this process, findings are stored conceptually on a "scratchpad" used during the generation of the response. This collected information forms the basis for subsequent analysis steps. Check the scratchpad for completeness before moving to calculations or subsequent steps.
-    *   **Dynamic Gap Filling & Persistence:** Actively attempt to fill data gaps identified during the process by performing additional, targeted searches as detailed in the relevant sections of Step 4. **Crucially, do not proceed to the next analytical calculation or step if the required input data (e.g., HT scores, goal times) for that step is marked as missing on the scratchpad.** Continue searching for the specific missing data point(s) using targeted queries until the data is found or confirmed as definitively unobtainable after reasonable attempts.
-    *   **Iteration:** If newly found data significantly changes the picture (e.g., correcting form data), iterate through relevant parts of Step 4 again, refining the analysis based on the updated information on the scratchpad.
-    *   **Prompt Chaining Context:** The complete analysis presented in the response (incorporating initially found and dynamically searched data) becomes part of the conversation history. This history serves as the context for subsequent prompts (prompt chaining), allowing follow-up questions or refinements to build upon the established analysis. The "storage" mechanism is this contextual carry-forward within the conversation session.
-    *   **Continuation of Steps:** Retrieve previous output and stored scratchpad data to find where the last step was complete or incomplete, continuing from that position, ensuring required data for the current step is present before executing it.
+    *   **Dynamic Gap Filling & Persistence:** Actively attempt to fill data gaps identified during the process by performing additional, targeted searches as detailed in the relevant sections of Step 4. **Crucially, do not proceed to the next analytical calculation or step if the required input data (e.g., HT scores, goal times) for that step is marked as missing on the scratchpad.** Continue searching for the specific missing data point(s) using targeted queries until the data is found or confirmed as definitively unobtainable after reasonable attempts. Acknowledge clearly where data quality/availability is low (e.g., U23, lower tiers) and temper conclusions accordingly.
+    *   **Iteration:** If newly found data significantly changes the picture (e.g., correcting form data, confirming rotation news), iterate through relevant parts of Step 4 again, refining the analysis based on the updated information on the scratchpad.
+    *   **Prompt Chaining Context:** The complete analysis presented in the response becomes part of the conversation history, serving as context for subsequent prompts.
+    *   **Continuation of Steps:** Retrieve previous output and stored scratchpad data to continue analysis from the last completed/incomplete step, ensuring required data is present.
 4.  **Data Check:** Perform the following analysis points, using grounded search where necessary:
 
     **4.1 League Context:**
-        *   **Objective:** Retrieve accurate, current league standings (Overall, Home, Away) for both teams in their specified league (or competition if appropriate).
-        *   **Mandatory Search & Query Formulation:** Use the `google_search` tool with specific, targeted queries... [details unchanged]
-        *   **Data Points to Extract:** Rank / Position, GP, Pts, W, D, L, GF, GA, GD for Overall, Home, Away.
-        *   **Source Prioritization:** Official sites, reputable sports news, established stats sites.
-        *   **Dynamic Gap Filling for Tables:** If Home/Away missing, perform specific searches.
-        *   **Conceptual Scratchpad Storage:** Store all retrieved league data points. Note source/date.
+        *   **Objective:** Retrieve accurate, current league standings (Overall, Home, Away) and understand the competitive hierarchy.
+        *   **Mandatory Search & Query Formulation:** Use `google_search` for league tables, team league levels.
+        *   **Data Points to Extract:** League Name/Tier (e.g., J1, J2, T1, T2), Rank/Position, GP, Pts, W, D, L, GF, GA, GD for Overall, Home, Away.
+        *   **Source Prioritization:** Official sites, reputable sports news (ESPN, BBC Sport), established stats sites (Soccerway, Fotmob, FBref).
+        *   **Analysis:** Note the **tier difference** (e.g., J1 vs J2) and its typical implications on quality. Assess current league performance relative to expectations/tier. Acknowledge potential data limitations for lower tiers/youth leagues.
+        *   **Conceptual Scratchpad Storage:** Store league data, tier difference, brief performance assessment, source/date, data quality notes.
 
     **4.1.1 Odds Search & Initial Market View:**
-        *   **Objective:** Retrieve match betting odds for key markets.
+        *   **Objective:** Retrieve match betting odds and understand market perception.
         *   **Mandatory Search:** Use search if odds not provided.
-        *   **Data Points to Extract:** 1X2 (Match Winner), Over/Under 2.5 Goals. *Optional but helpful if easily found:* Double Chance, Both Teams To Score (BTTS), key Handicap lines.
-        *   **Analysis:** Briefly interpret the main 1X2 odds – who is the favourite and how strongly? Does the O/U 2.5 odds clearly favour Over or Under?
-        *   **Conceptual Scratchpad Storage:** Store retrieved odds and the initial market interpretation (favoured outcome, likely goal level).
+        *   **Data Points to Extract:** 1X2, Over/Under 2.5 Goals. *Optional:* Double Chance, BTTS, Asian Handicap (AH) lines.
+        *   **Analysis:** Identify market favourite and strength of favouritism. Note O/U 2.5 lean. **Consider if extreme odds (e.g., 1.10 or 12.00) might imply market expectations about team strength/rotation for cup matches.**
+        *   **Conceptual Scratchpad Storage:** Store odds, market interpretation, note implications of extreme odds if applicable.
 
     **4.2 Recent Form Analysis (Last 10 Official Matches):**
-        *   **Objective:** Identify the 10 most recent official matches for each team, their outcomes, and analyze trends.
-        *   **Mandatory Search & Data Collation:** Use search to find results. **Explicitly list the 10 matches found for each team** on the conceptual scratchpad (Opponent, Competition, Date, **FT score**). Prioritize league > domestic cup > other official. *Verify consistency if results were used in previous analyses.*
+        *   **Objective:** Analyze recent performance trends and context.
+        *   **Mandatory Search & Data Collation:** Find 10 most recent official match results. **List opponent, competition, date, FT score**. Prioritize league > domestic cup > continental > other official.
         *   **Analysis (Based on listed 10 matches):**
-            *   Analyze W-D-L sequence and record (W, D, L counts). **Contextualize Streaks:** If a strong winning/drawing/losing streak (>4-5 games) exists, note it but also briefly comment on its potential sustainability or likelihood of regression based on opponent quality or underlying performance hints (if available).
-            *   Analyze performance against teams of similar, higher, and lower standing (using 4.1 context).
-            *   Analyze recent home-specific and away-specific form within these 10 games.
-            *   Evaluate total GF/GA trends across these 10 games (calculating averages).
-            *   Calculate CS% and FTS% for these 10 games.
-            *   Calculate O/U 2.5 goals % for these 10 games.
-        *   **Conceptual Scratchpad Storage:** Store the match list, WDL record (with streak context), GF/GA averages, CS%, FTS%, and O/U 2.5% for the last 10 games.
+            *   WDL Record & Sequence: Contextualize streaks (sustainability, quality of opposition during streak).
+            *   Performance vs Opposition Quality: How did they fare against teams of similar/higher/lower standing (using 4.1 context)?
+            *   Home/Away Form within last 10.
+            *   GF/GA Averages & Trends (last 10).
+            *   CS% & FTS% (last 10).
+            *   O/U 2.5% (last 10): **Note this percentage as *one input only* for the final O/U prediction, not the sole determinant.**
+        *   **Conceptual Scratchpad Storage:** Match list, WDL record/context, GF/GA averages, CS%, FTS%, O/U 2.5% (noted as partial factor).
 
-    **4.3 Reliability/Comeback/Choke/Timing Analysis (Based on Last 10 Official Matches Identified in 4.2):**
+    **4.3 Reliability/Comeback/Choke/Timing Analysis (Based on Last 10 Official Matches):**
         **4.3.1 HT/FT Score Retrieval (Mandatory Prerequisite):**
-            *   **Objective:** Obtain the Half-Time (HT) score for **each** of the 10 specific matches listed (or most recent 5 if 10 unavailable after diligent search).
-            *   **Methodology - Persistent Targeted Search:** ... [details unchanged, emphasize Sofascore/reliable sources]
-            *   **Conceptual Scratchpad Update & Checkpoint:** ... [details unchanged]
+            *   Objective/Methodology/Checkpoint: [Unchanged - emphasize persistence, acknowledge limitations].
         **4.3.2 Reliability/Comeback/Choke Calculation:**
-            *   **Objective:** Calculate performance based on HT status.
-            *   **Condition:** Proceed *only* using the HT/FT data collated in 4.3.1.
-            *   **Calculation:** Calculate Reliability (% Won when leading HT), Comeback (% Won/Drawn when trailing HT), Choke (% Lost/Drawn when leading HT).
-            *   **Acknowledge Limitations:** State the number of games basis for each calculation. If based on few instances (e.g., 0 or 1 game leading/trailing), note the low confidence in the resulting percentage.
-            *   **Conceptual Scratchpad Storage:** Store calculated percentages (or inability statement) and the number of games basis.
+            *   Objective/Condition/Calculation/Limitations: [Unchanged - emphasize low confidence for small samples].
+            *   **Conceptual Scratchpad Storage:** Calculated % (or inability statement), basis count, confidence note.
         **4.3.3 Goal Timing (ES / ST) Retrieval & Calculation (Attempt if Possible):**
-            *   **Objective:** Find precise goal times for ES/ST distribution.
-            *   **Methodology - Persistent Targeted Search (Last 10 or 5):** ... [details unchanged, emphasize reliable sources]
-            *   **Calculation (Conditional):** ... Calculate ES (% goals 1-15 OR 46-60) and ST (% distribution across 15-min blocks + halves). State basis (games/goals analyzed).
-            *   **Final Statement (If Both Attempts Fail):** State clearly if ES/ST could not be reliably calculated.
-            *   **Conceptual Scratchpad Storage:** Store calculated ES/ST percentages (or inability statement) and basis.
+            *   Objective/Methodology/Calculation/Final Statement/Storage: [Unchanged - emphasize difficulty/unavailability for lower leagues].
 
-    **4.4 Team News and Injuries:**
-        *   **Objective:** Identify significant absences and assess impact.
-        *   **Mandatory Search:** Search for confirmed significant injuries, suspensions, or key players returning.
-        *   **Analysis:** Assess the impact of *key* absences/returns on team strength, tactics, and specific units (defence, midfield, attack).
-        *   **Conceptual Scratchpad Storage:** Store key personnel news and impact assessment.
+    **4.4 Team News, Injuries, and Rotation Assessment:**
+        *   **Objective:** Identify absences and critically assess likely team strength, especially for cup matches.
+        *   **Mandatory Search:** Search for significant injuries, suspensions, returns, **AND** general team news discussing rotation policy or manager's comments for the specific competition/match.
+        *   **Analysis:**
+            *   Assess impact of *confirmed key* absences/returns.
+            *   **Crucially, assess Likelihood and Impact of Rotation:** Based on competition stage (early round vs QF/SF), league priorities (title race vs mid-table vs relegation battle), opponent strength (T1 vs T3 invites rotation), travel distance, fixture congestion, and *market signals* (do odds imply strong/weak team expected?).
+            *   **Estimate Squad Depth:** Can the likely rotating team field competitive backup players, or is there a huge drop-off? (e.g., J1 depth > J3 depth).
+        *   **Conceptual Scratchpad Storage:** Key personnel news, **Rotation Likelihood Assessment (High/Medium/Low)**, **Estimated Impact (High/Medium/Low)**, **Squad Depth Note**, overall impact assessment.
 
     **4.5 Situational and Tactical Context Analysis:**
-        *   **Objective:** Understand the broader context influencing the match.
+        *   **Objective:** Understand broader match context.
         *   **Analysis:**
-            *   Evaluate **Match Importance & Motivation:** Assess stakes for each team (e.g., promotion, playoffs, relegation, mid-table safety). **Explicitly consider how differing motivation levels might impact performance beyond raw form/stats.**
-            *   Infer Likely Tactics: Based on league position, form, home/away status, manager's style, and key absences/returns.
-            *   Assess Fixture Congestion & Fatigue: Note recent schedule density.
-            *   Note Managerial Context: Any recent changes or pressure?
-            *   Synthesize findings into a contextual overview.
-        *   **Conceptual Scratchpad Storage:** Store notes on motivation impact, tactics, schedule, manager.
+            *   Match Importance & Motivation: Consider league vs cup priority, derby/rivalry factor, potential for giant-killing/avoiding embarrassment.
+            *   Infer Likely Tactics: Consider base styles, but adjust based on **expected team strength due to rotation (from 4.4)**, home/away status, and motivation. (e.g., Rotated favourite might be less cohesive/intense).
+            *   Fixture Congestion & Fatigue (incl. travel impact).
+            *   Managerial Context (pressure, style).
+            *   Synthesize into contextual overview.
+        *   **Conceptual Scratchpad Storage:** Notes on motivation, adjusted tactics, schedule, manager.
 
     **4.6 Head-to-Head (H2H) Analysis:**
-        *   **Objective:** Analyze recent direct encounters.
-        *   **Mandatory Search:** Find results for the **last 4-6 official H2H meetings**. Include venue.
-        *   **Analysis:** Identify patterns (dominance, home advantage, scorelines). Calculate O/U 2.5% for these specific H2H games. Note results at *this specific venue*.
-        *   **Conceptual Scratchpad Storage:** Store H2H list, WDL summary, venue-specific results, and H2H O/U 2.5%.
+        *   **Objective:** Analyze recent direct encounters, assessing relevance critically.
+        *   **Mandatory Search:** Find results for last 4-6 official H2H meetings (include venue, competition).
+        *   **Analysis:**
+            *   Identify patterns (dominance, home adv, scorelines). Note venue-specific results.
+            *   Calculate O/U 2.5% for these H2H games.
+            *   **Critically Assess Relevance:** Is the H2H recent enough? Were teams in similar leagues/form then? Will rotation significantly change the dynamic compared to past H2H? **Avoid overweighting old or contextually different H2H data.**
+        *   **Conceptual Scratchpad Storage:** H2H list, WDL summary, venue results, H2H O/U%, **Relevance Assessment Note**.
 
     **4.7 Betting Odds Comparison & Market Check:**
-        *   **Objective:** Compare analytical findings with market view.
+        *   **Objective:** Compare analysis with market view, identify potential value.
         *   **Analysis:**
-            *   Retrieve/Note 1X2 and O/U 2.5 odds (from 4.1.1 or input).
-            *   **Compare Analysis vs. Odds:** Does the analysis (form, H2H, context) align with the favourite indicated by the odds? Does the O/U analysis align with the O/U odds lean?
-            *   **Identify Discrepancies:** **Explicitly highlight if the analysis strongly contradicts the market odds.** Discuss potential reasons for the discrepancy (e.g., market overvaluing reputation vs. form, model overweighting a specific factor, hidden info like late injury news).
-        *   **Conceptual Scratchpad Storage:** Store comparison notes, highlight discrepancies.
+            *   Retrieve 1X2 & O/U 2.5 odds.
+            *   Compare Analysis vs. Odds: Does analysis (Form, Context, **Rotation Assessment**, H2H Relevance) align with favourite/O/U lean?
+            *   **Identify Discrepancies:** Highlight contradictions. **Crucially, discuss if the market odds seem to accurately reflect the likely impact of rotation (assessed in 4.4) or if they primarily reflect base league status/form.** Is the favourite potentially poor value due to rotation/context? Is the market O/U lean neglecting defensive solidity or rotation's impact on attack?
+        *   **Conceptual Scratchpad Storage:** Comparison notes, explicit discrepancy identification (especially regarding rotation reflection in odds).
 
     **4.8 Weather Forecast Integration:**
         *   **Objective:** Assess weather impact.
-        *   **Mandatory Search:** Search for forecast at venue/kick-off time.
-        *   **Analysis:** Note significant conditions (heavy rain, strong wind, extreme temp) and likely impact on playstyle/goal potential.
-        *   **Conceptual Scratchpad Storage:** Store forecast and impact note.
+        *   **Mandatory Search:** Venue/kick-off time forecast.
+        *   **Analysis:** Note significant conditions (heavy rain, strong wind, extreme heat/humidity) and likely impact. Extreme conditions might favour underdogs or defensive setups, potentially suppressing goals more than usual.
+        *   **Conceptual Scratchpad Storage:** Forecast, impact note (linking to potential underdog advantage/goal impact).
 
     **4.9 Home/Away Strength Synthesis:**
-        *   **Objective:** Create a focused view of the home/away dynamic.
+        *   **Objective:** Focused view of home/away dynamic including context.
         *   **Analysis:**
-            *   Compare season-long Home/Away records (4.1) with *recent* home/away form (last 5 home/away games from 4.2 analysis). **Note any significant deviation between recent and season-long performance.**
-            *   Integrate relevant H2H results at this venue (4.6).
-            *   Overlay significant findings from Reliability/Timing analysis (4.3) if applicable (e.g., home team's reliability at home, away team's poor comeback record away, away team's high ES% away).
-            *   Synthesize into a summary of expected home advantage/disadvantage based on these combined factors.
-        *   **Conceptual Scratchpad Storage:** Store the synthesized home/away dynamic summary.
+            *   Compare season-long Home/Away records (4.1) vs recent home/away form (4.2). Note deviations.
+            *   Integrate relevant venue-specific H2H (4.6), considering relevance.
+            *   **Overlay impact of rotation (4.4):** Does expected rotation negate the away team's usual strength or amplify the home team's advantage?
+            *   Consider travel/climate impact (4.5, 4.8).
+            *   Synthesize into expected home advantage/disadvantage based on combined factors.
+        *   **Conceptual Scratchpad Storage:** Synthesized home/away dynamic summary incorporating rotation/travel/climate.
 
-5.  **Final Prediction:** Based on the comprehensive analysis drawing from **all** stored findings on the conceptual scratchpad:
+5.  **Final Prediction:** Based on comprehensive analysis from the conceptual scratchpad:
     *   **Synthesize Key Findings & Weighing Factors:**
-        *   Explicitly list the strongest arguments *for* each team winning or a draw, referencing key data points (League position, Recent Form record + streak context, significant H2H patterns, Home/Away synthesis from 4.9, key player news, motivation edge from 4.5).
-        *   **Crucially, state how conflicting data (e.g., Form vs H2H, Form vs Season-long Home/Away, Analysis vs Odds) is being weighed.** Justify prioritizing one factor over another (e.g., "While H2H favours Team B, Team A's current 8-game winning streak and perfect home form is deemed more indicative of immediate potential and outweighs H2H from 1-2 seasons ago").
-    *   **Identify Plausible Scenarios:** Briefly outline 2-3 plausible match narratives based on the weighted synthesis.
-    *   **Determine Primary Prediction Format:** (e.g., Match Outcome + Total Goals).
-    *   **State Primary Match Outcome Prediction:** (e.g., Team A Win, Draw, Team B Win).
-    *   **Market Odds Check & Confidence Adjustment:** Review the odds discrepancy highlighted in 4.7. If the primary prediction strongly contradicts the market favourite, briefly reiterate why and state whether this lowers confidence or if the value assessment remains strong. Consider if a more conservative prediction (e.g., Double Chance, Draw-No-Bet market equivalent) might be wiser if confidence is reduced.
-    *   **(Optional) Acknowledge Secondary Scenarios:** Briefly mention less likely but possible outcomes.
-    *   **Predict Total Goals (Over/Under 2.5):** State O/U Prediction based on synthesis (Form O/U%, H2H O/U%, inferred tactics, team GF/GA trends, weather). (Optional) Confidence level.
+        *   List strongest arguments for each outcome (Win/Draw/Loss) referencing key data points (League/Tier Gap, Current Form, **Rotation Assessment & Depth**, H2H Relevance, Home/Away Synthesis, Motivation, Key Absences).
+        *   **Crucially, state how conflicting data is weighed:**
+            *   **Form vs H2H:** Prioritize recent, relevant data unless H2H shows overwhelming contradictory pattern.
+            *   **Tier Gap vs Rotation/Context:** Weigh tier gap heavily *unless* rotation is expected to be significant *and* lower-league team is competent/motivated *or* higher-league team is in very poor form. J1 depth can often overcome rotation vs J3.
+            *   **Analysis vs Odds:** Clearly state if analysis diverges from market and why (e.g., "Market seems to ignore likely heavy rotation...").
+    *   **Identify Plausible Scenarios:** Outline 2-3 narratives based on weighted synthesis. Include potential upset scenario if context warrants (e.g., heavy rotation, derby, extreme motivation).
+    *   **State Primary Match Outcome Prediction:** (Team A Win, Draw, Team B Win).
+    *   **Market Odds Check & Confidence Adjustment:** Reiterate if prediction contradicts market favourite and why (esp. regarding rotation/context). State confidence level (High/Medium/Low). Consider conservative options (DC, AH) if confidence lowered by contradictions/unpredictability (e.g., derby).
+    *   **(Optional) Acknowledge Secondary Scenarios:** Mention less likely but possible outcomes (e.g., acknowledging upset potential even if predicting favourite).
+    *   **Predict Total Goals (Over/Under 2.5):**
+        *   Synthesize **multiple factors**: Form O/U% (as one input), H2H O/U% (checked for relevance), Team GF/GA averages, **Expected Impact of Rotation on Attack/Defence**, Inferred Tactics (attacking vs defensive, cagey cup tie?), Weather impact, Market O/U lean.
+        *   State O/U Prediction and Confidence Level. Explicitly justify if contradicting the market lean.
     *   **Formulate Most Robust Combined Prediction:** (e.g., Team A Win and Under 2.5 goals).
-    *   **Scoreline(s) (Contextual):** Suggest specific scoreline(s) aligning with the outcome and O/U prediction. **Justify the chosen scoreline(s) by referencing relevant factors:** Does ES/ST data (if available) suggest an early or late goal? Do Reliability/Choke percentages support a narrow win vs. a comfortable one? Does the FTS% suggest a 1-0 is more likely than 2-1?
-    *   **Justification:** Provide a concise rationale weaving together the key arguments, the weighing of conflicting data, the odds check, and how the scoreline reflects timing/reliability insights (if applicable/significant) to support the final combined prediction. State clearly if ES/ST/Reliability data was unavailable or considered inconclusive for this specific match.
+    *   **Scoreline(s) (Contextual):** Suggest specific scoreline(s) aligned with Outcome + O/U. Justify briefly using relevant factors (e.g., defensive solidity points to 1-0/2-0, high FTS% suggests clean sheet unlikely, Reliability/Timing data if available and significant).
+    *   **Justification:** Provide concise rationale weaving together key arguments, weighting logic (esp. rotation, H2H relevance), odds check, O/U synthesis, and scoreline rationale. Explicitly state if key data (HT/FT, Timing) was unavailable/inconclusive or if data quality was low.
