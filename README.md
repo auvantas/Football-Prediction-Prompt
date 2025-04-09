@@ -16,6 +16,34 @@
    - DO NOT COPY AND PASTE THE PROMPT AGAIN.
    - Under the previous analysis and prediction output, just copy and paste the next two teams playing below and press ENTER.
 
+
+**Key Changes in V19:**
+
+1.  **Enhanced Rotation Assessment (Multiple Sections):**
+    *   **Mandated Search (4.4):** Added requirement to actively search for news/comments regarding team rotation policies for the specific match/competition.
+    *   **Explicit Analysis (4.4):** Introduced structured assessment of Rotation Likelihood (High/Medium/Low) and Estimated Impact, considering league priorities, opponent strength, fixture congestion, and squad depth (especially J1 vs lower tiers).
+    *   **Odds Context (4.1.1, 4.7):** Added consideration of whether extreme market odds might imply expectations about team strength/rotation, and mandated checking if the market odds seem to accurately reflect the likely impact of rotation identified in the analysis. This directly addresses misjudging rotation's impact vs market expectations.
+    *   **Tactical Adjustment (4.5):** Requires inferring tactics based on the *expected rotated strength*, not just base team style.
+    *   **Weighting Guidance (5):** Added specific advice on weighing Tier Gap vs Rotation effect, acknowledging J1 depth can often overcome rotation against lower tiers – addressing previous overestimation of rotation's levelling effect.
+
+2.  **Refined Over/Under 2.5 Goals Prediction (4.2, 5):**
+    *   **Form O/U% Context (4.2):** Explicitly stated that the O/U% calculated from recent form is only *one input* factor, not the sole determinant – addressing over-reliance on this metric.
+    *   **Multi-Factor Synthesis (5 - O/U Prediction):** Mandated synthesizing multiple specific factors for the O/U prediction: Form O/U%, H2H O/U% (with relevance check), GF/GA averages, **Rotation Impact on Attack/Defence**, Inferred Tactics (cagey vs open), Weather, and Market Lean. Requires justifying contradictions with the market. This aims for a more robust O/U assessment than relying primarily on recent form trends.
+
+3.  **Critical H2H Relevance Assessment (4.6, 5):**
+    *   **Mandated Analysis (4.6):** Added explicit instruction to *critically assess the relevance* of H2H data based on recency, league context similarity, and potential impact of current factors like rotation.
+    *   **Weighting Guidance (5):** Advised against overweighting old or contextually different H2H data – addressing feedback on over-reliance on H2H.
+
+4.  **Increased Emphasis on Data Quality & Limitations (Multiple Sections):**
+    *   **Acknowledged in Process (3, 4.1):** Added reminders to acknowledge and temper conclusions when dealing with data that is sparse or less reliable (e.g., lower tiers, U23 leagues).
+    *   **Required in Justification (5):** Mandated stating clearly if key data points (like HT/FT, Timing) were unavailable or if data quality was generally low.
+
+5.  **Enhanced Contextual Analysis (4.8, 4.9):**
+    *   **Weather Impact (4.8):** Added prompting to link weather conditions to potential impacts favouring underdogs or affecting goal potential.
+    *   **Home/Away Synthesis (4.9):** Explicitly requires incorporating rotation assessment and travel/climate factors into the synthesis.
+
+These changes aim to create a more nuanced, context-aware analysis that better handles the complexities of cup competitions, rotation, varying data quality, and market dynamics, leading to more robust and potentially more accurate predictions.
+
 **Key Changes in V18:**
 
 **Weighted Items Across Predictions for Improvement:**
