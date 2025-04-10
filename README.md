@@ -14,7 +14,7 @@
 
 3. **Rinse and Repeat:**
    - DO NOT COPY AND PASTE THE PROMPT AGAIN.
-   - Under the previous analysis and prediction output, just copy and paste the next two teams playing below and press ENTER.\\
+   - Under the previous analysis and prediction output, just copy and paste the next two teams playing below and press ENTER.<br>
 
 
 **Key Changes in Prompt V24**
