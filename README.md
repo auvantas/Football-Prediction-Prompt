@@ -17,6 +17,7 @@
    - Under the previous analysis and prediction output, just copy and paste the next two teams playing below and press ENTER.
 
 
+
 **Key Changes in Prompt V22:**
 
 1.  **Prompt Version:**
