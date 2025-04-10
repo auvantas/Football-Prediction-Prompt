@@ -1,5 +1,7 @@
 # Football (soccer) Prediction Prompt for Gemini 2.5 Pro Preview 03-25
 
+**Google Ai Studio Required**
+
 **Instructions:**
 
 1. **Simple Copy and Paste:**
