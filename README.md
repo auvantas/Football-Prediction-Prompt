@@ -14,9 +14,65 @@
 
 3. **Rinse and Repeat:**
    - DO NOT COPY AND PASTE THE PROMPT AGAIN.
-   - Under the previous analysis and prediction output, just copy and paste the next two teams playing below and press ENTER.
+   - Under the previous analysis and prediction output, just copy and paste the next two teams playing below and press ENTER.\\
 
 
+**Key Changes in Prompt V24**
+
+*Purpose: To incorporate dynamic localized information sourcing to improve the accuracy and timeliness of specific data points, primarily team news and rotation assessments.*
+
+1.  **Integrated Localized Searching Strategy (3):**
+    *   Updated overarching search methodology to specify using **multiple, diverse reputable sources (both global and local)**.
+    *   Added guidance to include search queries **in the team's local language targeting local news sources** where applicable.
+    *   Refined source prioritization to explicitly state prioritizing **verified news from official team communications, reputable local/regional news outlets, and known team-specific journalists** for team news, injuries, and rotation information.
+    *   Added targeting **local news archives** during iterative refinement if needed.
+    *   Added notation of source type (global/local) during data accumulation.
+
+2.  **Supplemented Form Analysis with Local Context (4.2):**
+    *   Added guidance to **consult reputable local news reports/archives** for match verification or additional context (e.g., explaining unusual results) when analyzing recent form, supplementing global stats sites.
+    *   Noted requirement to identify source type (global/local) in scratchpad storage.
+
+3.  **Focused Local Search on Team News/Rotation (4.4):**
+    *   Made **localized searching mandatory and central** to the Team News/Rotation assessment. Explicitly requires supplementing global searches with targeted local searches (local news, journalists, forums in local language).
+    *   Emphasized **prioritizing verified news from primary/local sources** for player availability and rotation strategy over global predicted lineups alone.
+    *   Linked **Rotation Confidence 'High' level explicitly to "Confirmed News/Primary/Local Source" verification.**
+
+4.  **Optional Local Context for H2H (4.6):**
+    *   Added *optional* step to search local archives/reports for additional context on past significant H2H matches, if readily available and deemed useful.
+
+*(Note: Sections 4.3 (Reliability/Timing) were explicitly noted as still primarily relying on global stats sites, as localized sources rarely provide this level of granular, structured historical data consistently).*
+
+**Key Changes in Prompt V23**
+
+*Purpose: To address identified weaknesses from the Pumas/VW analysis, focusing on improving robustness against assumptions, incorporating dynamic context, and handling data gaps more effectively.*
+
+1.  **Enhanced Contextual Analysis (4.1):**
+    *   Added requirement to identify specific **Competition Stage** and dynamics (e.g., knockout leg implications, regional factors).
+    *   Added explicit assessment of **Environmental Factors** (altitude, climate, travel) and potential **Mitigation Factors** for the visiting team.
+
+2.  **Refined Form Analysis (4.2):**
+    *   Added **4.2.1 - Performance vs. Relevant Styles ('Preparation')** to assess tactical readiness against opponent types expected.
+
+3.  **Improved Data Gap Handling (4.3 & 5.5):**
+    *   Added notes in 4.3.1 (HT/FT) and 4.3.3 (Timing) to explicitly flag data insufficiency for **Step 5 confidence assessment**.
+    *   Mandated in **5.5 Confidence Assessment** to **lower the overall prediction confidence level** if key data (esp. Reliability/Timing) is unavailable.
+
+4.  **Mandatory Rotation Verification & Confidence (4.4):**
+    *   Strengthened search requirements to include **explicit mentions of rotation policy/lineup news**, not just assumptions.
+    *   Introduced requirement to **State Rotation Confidence** (High/Medium/Low) based on verification level.
+    *   Mandated that **Estimated Impact of rotation is adjusted based on this confidence level**. Low confidence = tempered impact assessment.
+
+5.  **Nuanced H2H Relevance Assessment (4.6):**
+    *   Added guidance to give **moderate consideration to recently demonstrated competitiveness** in H2H, even if context (like venue) has changed significantly.
+
+6.  **Refined Odds Comparison (4.7):**
+    *   Added check if market odds seem to accurately reflect **verified/confidently expected rotation** and **environmental factors**.
+
+7.  **Enhanced Synthesis (4.9 & 5):**
+    *   Added incorporating **rotation confidence level** and **environment/mitigation** into Home/Away Synthesis (4.9).
+    *   Introduced explicit step **5.1 Dynamic Weighting of Factors** requiring justification of why certain factors are prioritized for the specific match context.
+    *   Enhanced subsequent Step 5 sections (Arguments, Weighing, Confidence) to **reference the dynamic weighting and rotation confidence** explicitly.
+    *   Enhanced justification (5.9) to require inclusion of **dynamic weighting logic, rotation confidence, H2H competitiveness considerations, and data gap confidence adjustments.**
 
 **Key Changes in Prompt V22:**
 
