@@ -19,6 +19,67 @@
    - Under the previous analysis and prediction output, just copy and paste the next two teams playing below and press ENTER.<br><br>
 
 
+**Key Changes in Prompt V25**
+
+The primary purpose of this update (V24.1) is to integrate a dedicated analysis and prediction step for the "Both Teams To Score" (BTTS) market (Yes/No). This involves adding new data points to collect, refining the analysis focus in existing steps to support BTTS, and adding a specific BTTS prediction step within the final prediction section, ensuring consistency with other prediction elements like Outcome, Over/Under, and Scoreline(s).
+
+**Detailed Changes:**
+
+1.  **Odds Search & Market View (Step 4.1.1):**
+    *   **Added:** Requirement to extract **BTTS (Yes/No) odds** during the initial odds search, if available.
+    *   **Added:** Analysis point to identify the market's **BTTS lean**.
+    *   **Updated:** Conceptual Scratchpad storage to include BTTS odds and interpretation.
+
+2.  **Recent Form Analysis (Step 4.2):**
+    *   **Emphasis Added:** Highlighted the importance of existing metrics **CS% (Clean Sheet Percentage)** and **FTS% (Failed To Score Percentage)** as direct inputs for BTTS analysis. (No new data points added here, just focus).
+
+3.  **Team News, Injuries, and Rotation Assessment (Step 4.4):**
+    *   **Refined Analysis:** Added specific focus on assessing the impact of absences/returns on key **attackers and defenders** relevant to scoring and conceding.
+    *   **Refined Analysis:** Added consideration of rotation impact specifically on **attacking cohesion and defensive stability**.
+    *   **Updated:** Conceptual Scratchpad notes to reflect attack/defence impact.
+
+4.  **Situational and Tactical Context Analysis (Step 4.5):**
+    *   **Refined Analysis:** Added consideration of inferred **attacking vs defensive posture** for each team.
+    *   **Updated:** Conceptual Scratchpad notes to include attack/defence tactical lean.
+
+5.  **Head-to-Head (H2H) Analysis (Step 4.6):**
+    *   **Added:** Mandatory requirement to **calculate BTTS (Yes/No) %** based on recent H2H results.
+    *   **Updated:** Conceptual Scratchpad storage to include H2H BTTS%.
+
+6.  **Betting Odds Comparison & Market Check (Step 4.7):**
+    *   **Added:** Requirement to retrieve and compare **BTTS odds** alongside 1X2 and O/U 2.5.
+    *   **Refined Analysis:** Explicitly compare analysis findings against the market **BTTS odds**.
+    *   **Added:** Emphasis on identifying discrepancies specifically in the **BTTS market**.
+    *   **Updated:** Conceptual Scratchpad notes accordingly.
+
+7.  **Weather Forecast Integration (Step 4.8):**
+    *   **Minor Addition:** Included noting potential impact on goal scoring chances (e.g., heavy rain).
+
+8.  **Home/Away Strength Synthesis (Step 4.9):**
+    *   **Refined Analysis:** Added focus on comparing **scoring/conceding patterns (GF/GA, CS%, FTS%)** in home/away splits.
+    *   **Refined Analysis:** Added specific consideration of rotation impact on both **attack and defence** within the H/A context.
+    *   **Refined Analysis:** Synthesize the expected dynamic including the **likelihood of goals for/against each team**.
+    *   **Updated:** Conceptual Scratchpad notes accordingly.
+
+9.  **Final Prediction (Section 5):**
+    *   **Synthesize Key Findings (Step 5.2):** Added CS%/FTS%, rotation impact on attack/defence, H2H BTTS%, and scoring potential to the list of key data points to reference.
+    *   **Plausible Scenarios (Step 5.3):** Added consideration of the **likelihood of goals** when outlining scenarios.
+    *   **NEW Step 5.6: Predict Both Teams To Score (BTTS - Yes/No):**
+        *   Introduced a dedicated step for BTTS prediction.
+        *   Requires synthesis of Form (CS%/FTS%/GF/GA), Team News (Attack/Defence impact), Tactics, H2H BTTS%, and Market Odds.
+        *   Requires stating a clear BTTS Prediction (Yes/No) and a Confidence Level (High/Medium/Low) with justification.
+    *   **Renumbered & Enhanced Step 5.7 (Predict Total Goals O/U):** (Previously 5.6)
+        *   Explicitly added the **Predicted BTTS Outcome (from new Step 5.6)** as a factor in the O/U synthesis.
+        *   Added requirement to justify how the BTTS prediction informs the O/U prediction.
+    *   **Renumbered & Enhanced Step 5.8 (Combined Prediction):** (Previously 5.7)
+        *   Updated example to include BTTS (e.g., Team A Win + Under 2.5 goals + BTTS No).
+        *   Emphasized consistency across Outcome, BTTS, and O/U predictions.
+    *   **Renumbered & Enhanced Step 5.9 (Scorelines):** (Previously 5.8)
+        *   Added requirement for suggested scorelines to be aligned with **Outcome + BTTS + O/U** predictions.
+        *   Added justification requirement linking scoreline to **consistency with BTTS Yes/No**.
+    *   **Renumbered & Enhanced Step 5.10 (Justification):** (Previously 5.9)
+        *   Added requirements to weave in: rotation impact on attack/defence, H2H BTTS%, the **BTTS prediction rationale**, the **O/U synthesis linked to BTTS**, relevant **BTTS odds checks**, and ensuring **scoreline rationale consistency with BTTS**.
+
 **Key Changes in Prompt V24**
 
 *Purpose: To incorporate dynamic localized information sourcing to improve the accuracy and timeliness of specific data points, primarily team news and rotation assessments.*
